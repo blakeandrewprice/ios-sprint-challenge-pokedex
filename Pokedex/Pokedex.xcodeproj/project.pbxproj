@@ -55,8 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				91682F622378D2AD00611DAA /* PokemonController.swift */,
-				91682F642378D3E600611DAA /* PokemonDetailViewController.swift */,
 				91682F662378D3FC00611DAA /* PokemonTableViewController.swift */,
+				91682F642378D3E600611DAA /* PokemonDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

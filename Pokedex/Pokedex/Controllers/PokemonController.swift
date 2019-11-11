@@ -26,7 +26,7 @@ class PokemonController: Codable {
     private let baseUrl = URL(string: "https://pokeapi.co/api/v2/pokemon/")!
     
     //MARK: - Functions
-    func fetchPokemon(for pokemonName: String, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {
+    func fetchPokemon(for pokemonName: String, completion: @escaping (Result<[Pokemon], NetworkError>) -> Void) {
         let pokemonUrl = baseUrl.appendingPathComponent("\(pokemonName)")
         
         var request = URLRequest(url: pokemonUrl)
@@ -53,8 +53,9 @@ class PokemonController: Codable {
             
             let decoder = JSONDecoder()
             do {
-                let pokemon = try decoder.decode(Pokemon.self, from: data)
-                completion(.success(pokemon))
+                let decodedPokemon = try decoder.decode([Pokemon].self, from: data)
+                self.arrayOfPokemon = decodedPokemon
+                completion(.success(decodedPokemon))
             } catch {
                 print("Error decoding Pokemon object: \(error)")
                 completion(.failure(.noDecode))
