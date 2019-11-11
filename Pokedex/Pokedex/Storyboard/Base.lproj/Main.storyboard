@@ -16,9 +16,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="603-d3-kM3">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-9E-8qY">
+                                    <rect key="frame" x="130" y="7" width="155" height="32"/>
+                                    <segments>
+                                        <segment title="ID"/>
+                                        <segment title="ABC"/>
+                                    </segments>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Dds-9E-8qY" secondAttribute="trailing" constant="129" id="BLe-V9-JFW"/>
+                                <constraint firstItem="Dds-9E-8qY" firstAttribute="top" secondItem="603-d3-kM3" secondAttribute="top" constant="7" id="ZHT-sS-3Y8"/>
+                                <constraint firstItem="Dds-9E-8qY" firstAttribute="leading" secondItem="603-d3-kM3" secondAttribute="leading" constant="130" id="xy4-9e-mCc"/>
+                                <constraint firstAttribute="bottom" secondItem="Dds-9E-8qY" secondAttribute="bottom" constant="6" id="y4C-Il-wGA"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCell" textLabel="UbZ-0h-jml" style="IBUITableViewCellStyleDefault" id="7aX-nv-uxZ">
-                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                <rect key="frame" x="20" y="99.5" width="374" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7aX-nv-uxZ" id="5t8-Rs-xva">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -33,6 +53,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="EBq-FL-XgP" kind="show" identifier="DetailSegue" id="odU-3r-8j7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -44,7 +67,7 @@
                     <navigationItem key="navigationItem" title="Pokedex" largeTitleDisplayMode="always" id="8dp-DK-IkG">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="SAb-3y-Q6j">
                             <connections>
-                                <segue destination="EBq-FL-XgP" kind="show" id="voH-T1-zZk"/>
+                                <segue destination="EBq-FL-XgP" kind="show" identifier="SearchSegue" id="voH-T1-zZk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -137,4 +160,7 @@
             <point key="canvasLocation" x="-10.144927536231885" y="90.401785714285708"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="odU-3r-8j7"/>
+    </inferredMetricsTieBreakers>
 </document>
