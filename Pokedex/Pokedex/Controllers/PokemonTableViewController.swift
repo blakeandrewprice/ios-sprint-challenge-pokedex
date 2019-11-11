@@ -9,6 +9,9 @@
 import UIKit
 
 class PokemonTableViewController: UITableViewController {
+    //MARK: - Outlets
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     //MARK: - Properties
     var pokemonController = PokemonController()
     
@@ -35,6 +38,14 @@ class PokemonTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            let pokemon = pokemonController.arrayOfPokemon[indexPath.row]
+            pokemonController.deletePokemon(pokemon: pokemon)
+            tableView.reloadData()
+        }
+    }
+    
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchSegue" {
@@ -49,5 +60,9 @@ class PokemonTableViewController: UITableViewController {
                 detailVC.pokemonController = pokemonController
             }
         }
+    }
+    
+    @IBAction func sortSegmentedControl(_ sender: Any) {
+        pokemonController.sortPokemon(byId: segmentedControl.selectedSegmentIndex == 0)
     }
 }

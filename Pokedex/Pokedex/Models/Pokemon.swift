@@ -8,17 +8,20 @@
 
 import Foundation
 
-struct Pokemon: Codable {
+struct Pokemon: Codable, Equatable{
     let id: Int
     let name: String
     let abilities: [Ability]
     let types: [PokeType]
     let sprites: Sprites
+    
+    static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 struct Ability: Codable {
     let ability: NamedAPIResource
-    
 }
 
 struct PokeType: Codable {

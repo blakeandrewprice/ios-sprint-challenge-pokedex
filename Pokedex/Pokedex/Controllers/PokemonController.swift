@@ -70,7 +70,7 @@ class PokemonController: Codable {
         guard let documents = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             else { return nil }
         
-        return documents.appendingPathComponent("pokemon.plist")
+        return documents.appendingPathComponent("savedpokemon.plist")
     }
     
     func saveToPersistentStore() {
@@ -94,6 +94,25 @@ class PokemonController: Codable {
             arrayOfPokemon = decodedPokemon
         } catch  {
             print("Error loading Pokemon data: \(error)")
+        }
+    }
+    
+    func deletePokemon(pokemon: Pokemon) {
+        if let index = arrayOfPokemon.firstIndex(of: pokemon) {
+            arrayOfPokemon.remove(at: index)
+        }
+        saveToPersistentStore()
+    }
+    
+    func sortPokemon(byId: Bool) {
+        if byId {
+            arrayOfPokemon.sort { (lhs, rhs) -> Bool in
+                return lhs.id < rhs.id
+            }
+        } else {
+            arrayOfPokemon.sort { (lhs, rhs) -> Bool in
+                return lhs.name < rhs.name
+            }
         }
     }
 }

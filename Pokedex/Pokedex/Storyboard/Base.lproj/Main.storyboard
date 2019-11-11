@@ -26,6 +26,9 @@
                                         <segment title="ID"/>
                                         <segment title="ABC"/>
                                     </segments>
+                                    <connections>
+                                        <action selector="sortSegmentedControl:" destination="se8-xb-6vZ" eventType="valueChanged" id="ZXk-K1-sFk"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -72,6 +75,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="Dds-9E-8qY" id="roY-MR-s9q"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4F-S4-r85" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
