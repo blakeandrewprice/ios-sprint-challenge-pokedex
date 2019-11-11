@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum HTTPMethod: String {
     case get = "GET"
@@ -69,10 +70,10 @@ class PokemonController: Codable {
         let fileManager = FileManager.default
         guard let documents = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             else { return nil }
-        
+
         return documents.appendingPathComponent("savedpokemon.plist")
     }
-    
+
     func saveToPersistentStore() {
         guard let url = pokemonListURL else { return }
         do {
@@ -83,10 +84,10 @@ class PokemonController: Codable {
             print("Error saving Pokemon data: \(error)")
         }
     }
-    
+
     func loadFromPersistentStore() {
         guard let url = pokemonListURL else { return }
-        
+
         do {
             let data = try Data(contentsOf: url)
             let decoder = PropertyListDecoder()
@@ -114,5 +115,27 @@ class PokemonController: Codable {
                 return lhs.name < rhs.name
             }
         }
+    }
+    
+    func fetchImage(at urlString: String, completion: @escaping (Result<UIImage, NetworkError>) -> Void) {
+        let imageUrl = URL(string: urlString)!
+        
+        var request = URLRequest(url: imageUrl)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let _ = error {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            let image = UIImage(data: data)!
+            completion(.success(image))
+        }.resume()
     }
 }

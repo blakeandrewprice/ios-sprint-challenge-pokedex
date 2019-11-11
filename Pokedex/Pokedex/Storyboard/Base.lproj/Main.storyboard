@@ -74,7 +74,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="segmentedControl" destination="Dds-9E-8qY" id="roY-MR-s9q"/>
                     </connections>
@@ -108,8 +107,11 @@
                                 <rect key="frame" x="157" y="764" width="101" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Pokemon"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="EBq-FL-XgP" eventType="touchUpInside" id="uK9-an-SO6"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDi-u8-6BZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pokemon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDi-u8-6BZ">
                                 <rect key="frame" x="20" y="202" width="374" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
@@ -142,6 +144,14 @@
                         <viewLayoutGuide key="safeArea" id="dvd-uR-giX"/>
                     </view>
                     <navigationItem key="navigationItem" id="ptd-z4-sTN"/>
+                    <connections>
+                        <outlet property="abilityLabel" destination="Otp-oa-X0U" id="ng8-X6-I3t"/>
+                        <outlet property="idLabel" destination="bL7-JC-JNN" id="nOM-AC-nlV"/>
+                        <outlet property="nameLabel" destination="SDi-u8-6BZ" id="NlC-aA-cjL"/>
+                        <outlet property="searchBar" destination="vk3-pL-B8C" id="xNa-la-BhC"/>
+                        <outlet property="spriteImageView" destination="yV6-gd-nET" id="QKp-KF-fuU"/>
+                        <outlet property="typeLabel" destination="bJP-HS-P8b" id="u60-tN-eLt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMG-Wn-bHb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,6 +177,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="odU-3r-8j7"/>
+        <segue reference="voH-T1-zZk"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,10 +9,42 @@
 import UIKit
 
 class PokemonDetailViewController: UIViewController {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var spriteImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var abilityLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     var pokemonController: PokemonController!
     var pokemon: Pokemon?
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+    }
+    
+    func updateViews() {
+        if let pokemon = pokemon {
+            nameLabel.text = pokemon.name
+            idLabel.text = String(pokemon.id)
+            typeLabel.text = pokemon.types.map({ (types) -> String in
+                return types.type.name.capitalized
+                }).joined(separator: ", ")
+            abilityLabel.text = pokemon.abilities.map({ (abilities) -> String in
+                return abilities.ability.name.capitalized
+            }).joined(separator: ", ")
+            pokemonController.fetchImage(at: pokemon.sprites.front_default) { (result) in
+                if let image = try? result.get() {
+                    DispatchQueue.main.async {
+                        self.spriteImageView.image = image
+                    }
+                }
+            }
+        }
+    }
 }
