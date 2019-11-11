@@ -148,7 +148,6 @@
                         <outlet property="abilityLabel" destination="Otp-oa-X0U" id="ng8-X6-I3t"/>
                         <outlet property="idLabel" destination="bL7-JC-JNN" id="nOM-AC-nlV"/>
                         <outlet property="nameLabel" destination="SDi-u8-6BZ" id="NlC-aA-cjL"/>
-                        <outlet property="searchBar" destination="vk3-pL-B8C" id="xNa-la-BhC"/>
                         <outlet property="spriteImageView" destination="yV6-gd-nET" id="QKp-KF-fuU"/>
                         <outlet property="typeLabel" destination="bJP-HS-P8b" id="u60-tN-eLt"/>
                     </connections>

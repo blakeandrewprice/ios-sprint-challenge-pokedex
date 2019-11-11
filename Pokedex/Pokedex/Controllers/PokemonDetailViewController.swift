@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokemonDetailViewController: UIViewController {
+class PokemonDetailViewController: UIViewController /*UISearchBarDelegate*/ {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var spriteImageView: UIImageView!
@@ -27,6 +27,19 @@ class PokemonDetailViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         
     }
+    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        searchResultsController.performSearch(searchTerm: searchBarText, resultType: resultType) { (error) in
+//            if let error = error {
+//                print(error)
+//            } else {
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
+//    }
+    
     
     func updateViews() {
         if let pokemon = pokemon {
