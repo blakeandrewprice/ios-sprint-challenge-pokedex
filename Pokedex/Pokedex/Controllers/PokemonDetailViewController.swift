@@ -9,7 +9,7 @@
 import UIKit
 
 class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
-    
+    //MARK: - Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var spriteImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,9 +21,11 @@ class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var abilityLabel: UILabel!
     @IBOutlet weak var savePokemon: UIButton!
     
+    //MARK: - Properties
     var pokemonController: PokemonController!
     var pokemon: Pokemon?
     
+    //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -34,6 +36,7 @@ class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
         self.updateViews()
     }
     
+    //MARK: - Functions
     @IBAction func saveButtonTapped(_ sender: Any) {
         pokemonController.arrayOfPokemon.append(self.pokemon!)
         pokemonController.saveToPersistentStore()

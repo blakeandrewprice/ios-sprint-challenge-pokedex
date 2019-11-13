@@ -40,6 +40,13 @@ class PokemonTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath)
         cell.textLabel?.text = pokemonController.arrayOfPokemon[indexPath.row].name.capitalized
+        pokemonController.fetchImage(at: pokemonController.arrayOfPokemon[indexPath.row].sprites.front_default) { (result) in
+            if let image = try? result.get() {
+                DispatchQueue.main.async {
+                    cell.imageView?.image = image
+                }
+            }
+        }
         
         return cell
     }
@@ -68,6 +75,7 @@ class PokemonTableViewController: UITableViewController {
         }
     }
     
+    //MARK: - Functions
     @IBAction func sortSegmentedControl(_ sender: Any) {
         pokemonController.sortPokemon(byId: segmentedControl.selectedSegmentIndex == 0)
         tableView.reloadData()

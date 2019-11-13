@@ -40,7 +40,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCell" textLabel="UbZ-0h-jml" style="IBUITableViewCellStyleDefault" id="7aX-nv-uxZ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCell" textLabel="UbZ-0h-jml" imageView="RmX-ci-TWW" style="IBUITableViewCellStyleDefault" id="7aX-nv-uxZ">
                                 <rect key="frame" x="20" y="99.333332061767578" width="374" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7aX-nv-uxZ" id="5t8-Rs-xva">
@@ -48,12 +48,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UbZ-0h-jml">
-                                            <rect key="frame" x="20" y="0.0" width="334" height="43.666667938232422"/>
+                                            <rect key="frame" x="58.833333333333343" y="0.0" width="295.16666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="dollarsign.square.fill" catalog="system" id="RmX-ci-TWW">
+                                            <rect key="frame" x="20.166666666666664" y="10.666666666666666" width="23.666666666666668" height="21.666666666666668"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -231,6 +236,9 @@
             <point key="canvasLocation" x="-10.144927536231885" y="90.401785714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dollarsign.square.fill" catalog="system" width="64" height="56"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="voH-T1-zZk"/>
     </inferredMetricsTieBreakers>

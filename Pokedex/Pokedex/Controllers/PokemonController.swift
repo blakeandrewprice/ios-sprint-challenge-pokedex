@@ -97,6 +97,7 @@ class PokemonController: Codable {
         }
     }
     
+    //MARK: - Functions
     func deletePokemon(pokemon: Pokemon) {
         if let index = arrayOfPokemon.firstIndex(of: pokemon) {
             arrayOfPokemon.remove(at: index)
