@@ -34,16 +34,10 @@ class PokemonController: Codable {
         request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
                 print("Error receiving Pokemon (\(pokemonName)) details: \(error)")
                 completion(.failure(.otherError))
-                return
-            }
-            
-            if let response = response as? HTTPURLResponse,
-                response.statusCode == 401 {
-                completion(.failure(.badAuth))
                 return
             }
             
