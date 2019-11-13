@@ -19,10 +19,16 @@ class PokemonTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         pokemonController.loadFromPersistentStore()
+        pokemonController.sortPokemon(byId: segmentedControl.selectedSegmentIndex == 0)
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        pokemonController.sortPokemon(byId: segmentedControl.selectedSegmentIndex == 0)
+        tableView.reloadData()
     }
 
     // MARK: - Table View Data Source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -33,7 +39,7 @@ class PokemonTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath)
-        cell.textLabel?.text = pokemonController.arrayOfPokemon[indexPath.row].name
+        cell.textLabel?.text = pokemonController.arrayOfPokemon[indexPath.row].name.capitalized
         
         return cell
     }
@@ -64,5 +70,6 @@ class PokemonTableViewController: UITableViewController {
     
     @IBAction func sortSegmentedControl(_ sender: Any) {
         pokemonController.sortPokemon(byId: segmentedControl.selectedSegmentIndex == 0)
+        tableView.reloadData()
     }
 }

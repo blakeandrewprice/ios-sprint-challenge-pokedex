@@ -13,9 +13,16 @@ class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var spriteImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var idIDLabel: UILabel!
     @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var typeTYPELabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var abilityABILITYLabel: UILabel!
     @IBOutlet weak var abilityLabel: UILabel!
+    @IBOutlet weak var savePokemon: UIButton!
+    
+    var pokemonController: PokemonController!
+    var pokemon: Pokemon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +30,14 @@ class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
         let tap = UITapGestureRecognizer(target: self.view,
                                          action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        self.showHidden()
+        self.updateViews()
     }
     
-    var pokemonController: PokemonController!
-    var pokemon: Pokemon?
-    
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
+        pokemonController.arrayOfPokemon.append(self.pokemon!)
+        pokemonController.saveToPersistentStore()
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -40,12 +48,12 @@ class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
                     DispatchQueue.main.async {
                         self.pokemon = pokemon
                         self.updateViews()
+                        self.showHidden()
                     }
                 }
             }
         }
     }
-    
     
     func updateViews() {
         if let pokemon = pokemon {
@@ -64,6 +72,21 @@ class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
                     }
                 }
             }
+            showHidden()
+        }
+    }
+    
+    func showHidden() {
+        if pokemon != nil {
+            nameLabel.isHidden = false
+            idLabel.isHidden = false
+            idIDLabel.isHidden = false
+            typeLabel.isHidden = false
+            typeTYPELabel.isHidden = false
+            abilityLabel.isHidden = false
+            abilityABILITYLabel.isHidden = false
+            spriteImageView.isHidden = false
+            savePokemon.isHidden = false
         }
     }
 }

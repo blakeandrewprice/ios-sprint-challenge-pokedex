@@ -137,36 +137,8 @@ class PokemonController: Codable {
             completion(.success(image))
         }.resume()
     }
-    
-//    func performSearch(searchTerm: String, completion: @escaping (Error?) -> Void ) {
-//        let pokemonUrl = baseUrl.appendingPathComponent("\(searchTerm)")
-//
-//        var request = URLRequest(url: pokemonUrl)
-//        request.httpMethod = HTTPMethod.get.rawValue
-//
-//        URLSession.shared.dataTask(with: request) { data, _, error in
-//            if let error = error {
-//                completion("Error fetching data: \(error)")
-//            }
-//
-//            guard let data = data else {
-//                completion("No data return from data task.")
-//                return
-//            }
-//
-//            let decoder = JSONDecoder()
-//            do {
-//                let decodedPokemon = try decoder.decode([Pokemon].self, from: data)
-//                self.arrayOfPokemon = decodedPokemon
-//            } catch {
-//                completion("Unable to decode data into object of type [Pokemon]: \(error)")
-//                return
-//            }
-//        }.resume()
-//    }
 }
 
 extension String: LocalizedError {
     public var errorDescription: String? { return self }
 }
-
