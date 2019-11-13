@@ -27,7 +27,7 @@ class PokemonController: Codable {
     private let baseUrl = URL(string: "https://pokeapi.co/api/v2/pokemon/")!
     
     //MARK: - Functions
-    func fetchPokemon(for pokemonName: String, completion: @escaping (Result<[Pokemon], NetworkError>) -> Void) {
+    func fetchPokemon(for pokemonName: String, completion: @escaping (Result<Pokemon, NetworkError>) -> Void) {
         let pokemonUrl = baseUrl.appendingPathComponent("\(pokemonName)")
         
         var request = URLRequest(url: pokemonUrl)
@@ -51,11 +51,10 @@ class PokemonController: Codable {
                 completion(.failure(.badData))
                 return
             }
-            
+            print(String(decoding: data, as: UTF8.self))
             let decoder = JSONDecoder()
             do {
-                let decodedPokemon = try decoder.decode([Pokemon].self, from: data)
-                self.arrayOfPokemon = decodedPokemon
+                let decodedPokemon = try decoder.decode(Pokemon.self, from: data)
                 completion(.success(decodedPokemon))
             } catch {
                 print("Error decoding Pokemon object: \(error)")
@@ -70,10 +69,10 @@ class PokemonController: Codable {
         let fileManager = FileManager.default
         guard let documents = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             else { return nil }
-
+        
         return documents.appendingPathComponent("savedpokemon.plist")
     }
-
+    
     func saveToPersistentStore() {
         guard let url = pokemonListURL else { return }
         do {
@@ -84,10 +83,10 @@ class PokemonController: Codable {
             print("Error saving Pokemon data: \(error)")
         }
     }
-
+    
     func loadFromPersistentStore() {
         guard let url = pokemonListURL else { return }
-
+        
         do {
             let data = try Data(contentsOf: url)
             let decoder = PropertyListDecoder()
@@ -138,4 +137,36 @@ class PokemonController: Codable {
             completion(.success(image))
         }.resume()
     }
+    
+//    func performSearch(searchTerm: String, completion: @escaping (Error?) -> Void ) {
+//        let pokemonUrl = baseUrl.appendingPathComponent("\(searchTerm)")
+//
+//        var request = URLRequest(url: pokemonUrl)
+//        request.httpMethod = HTTPMethod.get.rawValue
+//
+//        URLSession.shared.dataTask(with: request) { data, _, error in
+//            if let error = error {
+//                completion("Error fetching data: \(error)")
+//            }
+//
+//            guard let data = data else {
+//                completion("No data return from data task.")
+//                return
+//            }
+//
+//            let decoder = JSONDecoder()
+//            do {
+//                let decodedPokemon = try decoder.decode([Pokemon].self, from: data)
+//                self.arrayOfPokemon = decodedPokemon
+//            } catch {
+//                completion("Unable to decode data into object of type [Pokemon]: \(error)")
+//                return
+//            }
+//        }.resume()
+//    }
 }
+
+extension String: LocalizedError {
+    public var errorDescription: String? { return self }
+}
+

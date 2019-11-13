@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PokemonDetailViewController: UIViewController /*UISearchBarDelegate*/ {
+class PokemonDetailViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var spriteImageView: UIImageView!
@@ -19,6 +19,10 @@ class PokemonDetailViewController: UIViewController /*UISearchBarDelegate*/ {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        let tap = UITapGestureRecognizer(target: self.view,
+                                         action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     var pokemonController: PokemonController!
@@ -28,22 +32,24 @@ class PokemonDetailViewController: UIViewController /*UISearchBarDelegate*/ {
         
     }
     
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchResultsController.performSearch(searchTerm: searchBarText, resultType: resultType) { (error) in
-//            if let error = error {
-//                print(error)
-//            } else {
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            }
-//        }
-//    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+        if let searchTerm = searchBar.text?.lowercased() {
+            pokemonController.fetchPokemon(for: searchTerm) { (result) in
+                if let pokemon = try? result.get() {
+                    DispatchQueue.main.async {
+                        self.pokemon = pokemon
+                        self.updateViews()
+                    }
+                }
+            }
+        }
+    }
     
     
     func updateViews() {
         if let pokemon = pokemon {
-            nameLabel.text = pokemon.name
+            nameLabel.text = pokemon.name.capitalized
             idLabel.text = String(pokemon.id)
             typeLabel.text = pokemon.types.map({ (types) -> String in
                 return types.type.name.capitalized
