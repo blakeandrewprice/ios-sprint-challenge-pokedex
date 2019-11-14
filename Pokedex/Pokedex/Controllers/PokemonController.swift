@@ -45,7 +45,7 @@ class PokemonController: Codable {
                 completion(.failure(.badData))
                 return
             }
-            print(String(decoding: data, as: UTF8.self))
+            
             let decoder = JSONDecoder()
             do {
                 let decodedPokemon = try decoder.decode(Pokemon.self, from: data)
